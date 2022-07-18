@@ -1,0 +1,269 @@
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+
+    # Open new page
+    page = context.new_page()
+
+    # Go to https://login.test.gotin.top/login/phone/account
+    page.goto("https://login.test.gotin.top/login/phone/account")
+
+    # Click input[type="text"] >> nth=1
+    page.locator("input[type=\"text\"]").nth(1).click()
+
+    # Fill input[type="text"] >> nth=1
+    page.locator("input[type=\"text\"]").nth(1).fill("13853871223")
+
+    # Click button:has-text("继续")
+    page.locator("button:has-text(\"继续\")").click()
+
+    # Click text=没有账号？去注册
+    page.locator("text=没有账号？去注册").click()
+    page.wait_for_url("https://login.test.gotin.top/register/phone/account")
+
+    # Click button:has-text("继续")
+    page.locator("button:has-text(\"继续\")").click()
+    page.wait_for_url("https://login.test.gotin.top/register/phone/detail")
+
+    # Fill input[type="text"] >> nth=1
+    page.locator("input[type=\"text\"]").nth(1).fill("123")
+
+    # Click input[type="text"] >> nth=0
+    page.locator("input[type=\"text\"]").first.click()
+
+    # Fill input[type="text"] >> nth=0
+    page.locator("input[type=\"text\"]").first.fill("12313")
+
+    # Click text=请输入验证码 发送验证码 >> input[type="text"]
+    page.locator("text=请输入验证码 发送验证码 >> input[type=\"text\"]").click()
+
+    # Fill text=请输入验证码 发送验证码 >> input[type="text"]
+    page.locator("text=请输入验证码 发送验证码 >> input[type=\"text\"]").fill("12580")
+
+    # Click input[type="password"]
+    page.locator("input[type=\"password\"]").click()
+
+    # Fill input[type="password"]
+    page.locator("input[type=\"password\"]").fill("123qwe!@#")
+
+    # Click button:has-text("注册用户")
+    page.locator("button:has-text(\"注册用户\")").click()
+    page.wait_for_url("https://create.test.gotin.top/guide/organizer/create")
+
+    # Click text=首先，您需要创建一个主办方
+    page.locator("text=首先，您需要创建一个主办方").click()
+
+    # Click #el-id-9438-3
+    page.locator("#el-id-9438-3").click()
+
+    # Fill #el-id-9438-3
+    page.locator("#el-id-9438-3").fill("天津人大")
+
+    # Click text=主办方邮箱请输入主办方邮箱 >> input[type="text"]
+    page.locator("text=主办方邮箱请输入主办方邮箱 >> input[type=\"text\"]").click()
+
+    # Click text=主办方邮箱请输入主办方邮箱 >> input[type="text"]
+    page.locator("text=主办方邮箱请输入主办方邮箱 >> input[type=\"text\"]").click()
+
+    # Fill text=主办方邮箱请输入主办方邮箱 >> input[type="text"]
+    page.locator("text=主办方邮箱请输入主办方邮箱 >> input[type=\"text\"]").fill("mimeng1")
+
+    # Click textarea
+    page.locator("textarea").click()
+
+    # Click button:has-text("下一步")
+    page.locator("button:has-text(\"下一步\")").click()
+    page.wait_for_url("https://create.test.gotin.top/guide/organizer/survey")
+
+    # Click text=让我们了解您
+    page.locator("text=让我们了解您").click()
+
+    # Click #el-id-9438-12
+    page.locator("#el-id-9438-12").click()
+
+    # Click li:has-text("大学或教育机构")
+    page.locator("li:has-text(\"大学或教育机构\")").click()
+
+    # Click input[type="text"] >> nth=1
+    page.locator("input[type=\"text\"]").nth(1).click()
+
+    # Click li:has-text("大会")
+    page.locator("li:has-text(\"大会\")").click()
+
+    # Click li:has-text("论坛")
+    page.locator("li:has-text(\"论坛\")").click()
+
+    # Click li:has-text("社区组织见面会")
+    page.locator("li:has-text(\"社区组织见面会\")").click()
+
+    # Click li:has-text("展销博览会")
+    page.locator("li:has-text(\"展销博览会\")").click()
+
+    # Click li:has-text("社交活动或混合活动")
+    page.locator("li:has-text(\"社交活动或混合活动\")").click()
+
+    # Click li:has-text("研讨会、课程或培训")
+    page.locator("li:has-text(\"研讨会、课程或培训\")").click()
+
+    # Click div:has-text("以下哪个描述最贴合您的主办方？您计划举办哪种类型的活动？大会论坛社区组织见面会展销博览会社交活动或混合活动研讨会、课程或培训您举办活动的频率是？上一步下一步") >> nth=3
+    page.locator("div:has-text(\"以下哪个描述最贴合您的主办方？您计划举办哪种类型的活动？大会论坛社区组织见面会展销博览会社交活动或混合活动研讨会、课程或培训您举办活动的频率是？上一步下一步\")").nth(3).click()
+
+    # Click text=每年举办几次
+    page.locator("text=每年举办几次").click()
+
+    # Click button:has-text("下一步")
+    page.locator("button:has-text(\"下一步\")").click()
+    page.wait_for_url("https://create.test.gotin.top/eventlists")
+
+    # Click text=恭喜您成功创建了一个主办方！
+    page.locator("text=恭喜您成功创建了一个主办方！").click()
+
+    # Click text=点击下方，开始创建您的活动
+    page.locator("text=点击下方，开始创建您的活动").click()
+
+    # Click button:has-text("创建一场活动")
+    page.locator("button:has-text(\"创建一场活动\")").click()
+    page.wait_for_url("https://create.test.gotin.top/guide/event/baseinfo")
+
+    # Click [placeholder="请选择"]
+    page.locator("[placeholder=\"请选择\"]").click()
+
+    # Click [placeholder="请选择"]
+    page.locator("[placeholder=\"请选择\"]").click()
+
+    # Click #el-id-9438-30
+    page.locator("#el-id-9438-30").click()
+
+    # Click #el-id-9438-23 >> text=13
+    page.locator("#el-id-9438-23 >> text=13").click()
+
+    # Click #el-id-9438-31
+    page.locator("#el-id-9438-31").click()
+
+    # Click text=27 >> nth=3
+    page.locator("text=27").nth(3).click()
+
+    # Click button:has-text("下一步")
+    page.locator("button:has-text(\"下一步\")").click()
+    page.wait_for_url("https://create.test.gotin.top/guide/event/guest")
+
+    # Click text=请添加一个演讲嘉宾，您可以在嘉宾管理继续添加更多嘉宾
+    page.locator("text=请添加一个演讲嘉宾，您可以在嘉宾管理继续添加更多嘉宾").click()
+
+    # Click text=请添加一个演讲嘉宾，您可以在嘉宾管理继续添加更多嘉宾
+    page.locator("text=请添加一个演讲嘉宾，您可以在嘉宾管理继续添加更多嘉宾").click()
+
+    # Click #el-id-9438-40
+    page.locator("#el-id-9438-40").click()
+
+    # Click #el-id-9438-40
+    page.locator("#el-id-9438-40").click()
+
+    # Click #el-id-9438-41
+    page.locator("#el-id-9438-41").click()
+
+    # Click #el-id-9438-42
+    page.locator("#el-id-9438-42").click()
+
+    # Click .el-select__tags
+    page.locator(".el-select__tags").click()
+
+    # Click .el-select__tags
+    page.locator(".el-select__tags").click()
+
+    # Click #el-id-9438-45
+    page.locator("#el-id-9438-45").click()
+
+    # Fill #el-id-9438-45
+    page.locator("#el-id-9438-45").fill("13853876222")
+
+    # Click button:has-text("下一步")
+    page.locator("button:has-text(\"下一步\")").click()
+    page.wait_for_url("https://create.test.gotin.top/guide/event/session")
+
+    # Click [placeholder="请选择"]
+    page.locator("[placeholder=\"请选择\"]").click()
+
+    # Click li:has-text("直播到有了平台")
+    page.locator("li:has-text(\"直播到有了平台\")").click()
+
+    # Click #el-id-9438-57
+    page.locator("#el-id-9438-57").click()
+
+    # Click li:has-text("社交")
+    page.locator("li:has-text(\"社交\")").click()
+
+    # Click #el-id-9438-58
+    page.locator("#el-id-9438-58").click()
+
+    # Click #el-id-9438-58
+    page.locator("#el-id-9438-58").click()
+
+    # Go to https://create.test.gotin.top/guide/event/session
+    page.goto("https://create.test.gotin.top/guide/event/session")
+
+    # Go to https://create.test.gotin.top/guide/event/ticket
+    page.goto("https://create.test.gotin.top/guide/event/ticket")
+
+    # Click button:has-text("完成")
+    page.locator("button:has-text(\"完成\")").click()
+    page.wait_for_url("https://create.test.gotin.top/myevent/overview")
+
+    # Click text=活动创建成功！
+    page.locator("text=活动创建成功！").click()
+
+    # Click text=活动创建成功！在有了gotin继续探索新世界吧！关闭 >> img
+    page.locator("text=活动创建成功！在有了gotin继续探索新世界吧！关闭 >> img").click()
+
+    # Click text=活动创建成功！
+    page.locator("text=活动创建成功！").click()
+
+    # Click button:has-text("关闭")
+    page.locator("button:has-text(\"关闭\")").click()
+
+    # Click button:has-text("预览") >> nth=0
+    with page.expect_popup() as popup_info:
+        page.locator("button:has-text(\"预览\")").first.click()
+    page1 = popup_info.value
+    page.wait_for_url("https://ktcsghm.test.gotin.top/?preview=1&lang=cn")
+
+    # Click .system-banner > img
+    page1.locator(".system-banner > img").click()
+
+    # Click button:has-text("预览") >> nth=0
+    with page.expect_popup() as popup_info:
+        page.locator("button:has-text(\"预览\")").first.click()
+    page2 = popup_info.value
+    page.wait_for_url("https://ktcsghm.test.gotin.top/?preview=1&lang=cn")
+
+    # Click .system-banner > img
+    page2.locator(".system-banner > img").click()
+
+    # Click text=天津第26届会议
+    page2.locator("text=天津第26届会议").click()
+
+    # Click button:has-text("发布") >> nth=0
+    page.locator("button:has-text(\"发布\")").first.click()
+
+    # Click text=发布成功
+    page.locator("text=发布成功").click()
+
+    # Click text=发布成功
+    page.locator("text=发布成功").click()
+
+    # Click div[role="alert"]:has-text("发布成功")
+    page.locator("div[role=\"alert\"]:has-text(\"发布成功\")").click()
+
+    # Click text=发布成功
+    page.locator("text=发布成功").click()
+
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)
