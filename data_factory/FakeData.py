@@ -93,7 +93,7 @@ class DeptData:
         返回email
         :return:
         """
-        fake = Faker("zh_CN")
+        fake = Faker()
         sponorEmail = fake.company_email() # 生成名称
         #print(sponorEmail)
         return sponorEmail

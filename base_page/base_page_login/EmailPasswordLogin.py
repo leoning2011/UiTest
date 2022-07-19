@@ -10,7 +10,7 @@ import os
 import json
 
 
-class TelPasswordLogin:
+class EmailPasswordLogin:
 
     # 此处构造测试用例所需的数据，
     #data = ['13853867111','leo','wang','12580','123qwe!@#']
@@ -20,14 +20,14 @@ class TelPasswordLogin:
     # 使用pytest.mark.parametrize引入用户数据
 
     #@pytest.mark.parametrize('userdata',DataCenter().reg_parmes())
-    def tel_password_login(self):
-        """  正向流程：密码登录   """
+    def email_password_login(self):
+        """  正向流程：邮箱 密码登录   """
 
-        re_verif_code = []
+        re_emali_code = []
 
         page_main_url = "https://login.test.gotin.top/login/phone/account"
         page_target_url = 'https://create.test.gotin.top/eventlists'
-        """  正向流程：密码登录    """
+        """  正向流程：邮箱密码登录    """
         with sync_playwright() as p:
 
             browser = p.chromium.launch(headless=False)
@@ -36,63 +36,54 @@ class TelPasswordLogin:
             # Go to https://login.test.gotin.top/login/phone/account
             page.goto(page_main_url)
 
+            page.locator("text=邮箱").click()
 
-            # Fill input[type="text"] >> nth=1
-            page.locator("input[type=\"text\"]").nth(1).fill("18884737126")
-
+            page.locator("input[type=\"text\"]").click()
+            # Fill input[type="text"]
+            page.locator("input[type=\"text\"]").fill("mimeng4a@163.com")
             # Click button:has-text("继续")
             page.locator("button:has-text(\"继续\")").click()
-            page.wait_for_url("https://login.test.gotin.top/login/phone/detail")
-
-            # Click text=密码登录
-            page.locator("text=密码登录").click()
-
-            # Click input[type="password"]
-            page.locator("input[type=\"password\"]").click()
-
+            page.wait_for_url("https://login.test.gotin.top/login/email/detail")
             # Fill input[type="password"]
             page.locator("input[type=\"password\"]").fill("123qwe!@#")
+            # Click button:has-text("登录")
+            page.locator("button:has-text(\"登录\")").click()
 
-            # Click text=+86 188-8473-7126 密码密码验证码登录 忘记密码 登录 >> button
-            page.locator("text=+86 188-8473-7126 密码密码验证码登录 忘记密码 登录 >> button").click()
-
-            # 获取当前页面元素，# 获取页面全文
-            # html_page_value = page.content()
             page_main_title = page.inner_html("text=登录成功")
             time.sleep(3)
-            page.wait_for_url("https://create.test.gotin.top/eventlists")
-
+            page.wait_for_url(page_target_url)
 
 
             # 进行断言
 
             assert_url = page.url
-            re_verif_code.append(assert_url)
-            print(re_verif_code)
+            re_emali_code.append(assert_url)
+            print(re_emali_code)
             if page_target_url == assert_url:
-                print('密码登录成功')
+                print('邮箱登录成功')
             else:
-                print('密码登录失败')
+                print('邮箱登录失败')
             assert page_target_url == page.url
             # 保存状态文件
 
 
-            context.storage_state(path='tel_verif_code_login.json')
+            context.storage_state(path='tel_email_code_login.json')
 
             # 获取当前页面元素，# 获取页面全文
             # html_page_value = page.content()
-            #page_main_title = page.inner_text(
-                #"xpath=/html/body/div[1]/section/aside/div/div[3]/ul/li[2]/div/div")
-            re_verif_code.append(page_main_title)
+            p#age_main_title = page.inner_text("xpath=/html/body/div[1]/section/aside/div/div[3]/ul/li[2]/div/div")
+            re_emali_code.append(page_main_title)
             print(page_main_title)
-
+            # print(html_page_value)
+            # storage = context.storage_state()
+            # os.environ["STORAGE"] = json.dumps(storage)
 
             context.close()
             browser.close()
-            return re_verif_code
+            return re_emali_code
 
 
 
 if __name__ == '__main__':
 
-    creat = TelPasswordLogin().tel_password_login()
+    creat = EmailPasswordLogin().email_password_login()

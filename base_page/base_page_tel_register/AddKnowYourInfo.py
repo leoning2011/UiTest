@@ -1,9 +1,8 @@
 
-from playwright.sync_api import Page
 from playwright.sync_api import sync_playwright
 import time
 import pytest
-from data_factory.DataParmes import DataCenter
+from data_factory.PageGlobalDict import GlobalDict
 from data_factory.ProjectDir import UiProjectDri
 
 class KnowYourInfo:
@@ -11,9 +10,11 @@ class KnowYourInfo:
     def add_your_info(self):
         """  正向流程：让我们了解您 """
         re_know_info = []
-        #浏览器状态存储路径
-        project_dir=UiProjectDri.re_project_dir()
-        json_save_patch =project_dir[0]
+        # 引用声明全局变量
+        GlobalDict._init()
+
+        # 报告生成路径,，取值公共变量中的路径
+        json_save_patch = GlobalDict.get_value('project_pwd').get('register_token')
         """  正向流程：让我们了解您   """
 
         with sync_playwright() as p:

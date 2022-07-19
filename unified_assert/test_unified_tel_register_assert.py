@@ -1,14 +1,14 @@
-from base_page.base_page_tel_register import TelRegister
-from base_page.base_page_tel_register import  GreateSponsor
-from base_page.base_page_tel_register import KnowYourInfo
-from base_page.base_page_tel_register import AddGuest
-from base_page.base_page_tel_register import AddSchedule
-from base_page.base_page_tel_register import AddTicket
+from base_page.base_page_tel_register.TelRegister import TelRegister
+from base_page.base_page_tel_register.AddGreateSponsor import  GreateSponsor
+from base_page.base_page_tel_register.AddKnowYourInfo import KnowYourInfo
+from base_page.base_page_tel_register.AddGuest import AddGuest
+from base_page.base_page_tel_register.AddSchedule import AddSchedule
+from base_page.base_page_tel_register.AddTicket import AddTicket
 from data_factory.DataParmes import DataCenter
 import pytest
 
 class TestUnifiedTelRegisterAssert:
-    #注册流程
+
     def test_assert_tel_user(self):
         reg_tel_user =TelRegister().add_tel_user(DataCenter.reg_parmes())
         print('--第1步----------------手机号注册流程进行中----------填写个人信息中------------')
@@ -43,7 +43,7 @@ class TestUnifiedTelRegisterAssert:
 
     def test_assert_add_ticket(self):
         ticket_info =AddTicket().add_ticket(DataCenter().ticket_info())
-        print('--第5步-----------------手机号注册流程进行中----------填写票务信息并发布-----------')
+        print('--第6步-----------------手机号注册流程进行中----------填写票务信息并发布-----------')
         print(ticket_info)
         assert ticket_info[0] == '已发布'
 

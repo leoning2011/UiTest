@@ -58,6 +58,9 @@ def run(playwright: Playwright) -> None:
     page.locator("text=+86 188-8473-7126 密码密码验证码登录 忘记密码 登录 >> button").click()
     page.wait_for_url("https://create.test.gotin.top/eventlists")
 
+
+    # Triple click text=登录成功
+    page.locator("text=登录成功").click(click_count=3)
     # ---------------------
     context.close()
     browser.close()

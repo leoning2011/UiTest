@@ -4,7 +4,7 @@ from playwright.sync_api import sync_playwright
 import time
 import pytest
 from data_factory.DataParmes import DataCenter
-from data_factory.ProjectDir import UiProjectDri
+from data_factory.PageGlobalDict import GlobalDict
 
 class AddGuest:
     @pytest.mark.parametrize('userdata', DataCenter().guest_info())
@@ -12,9 +12,11 @@ class AddGuest:
         """  添加一个嘉宾 """
         re_add_guest = []
         print(guestinfo)
-        #浏览器状态存储路径
-        project_dir=UiProjectDri.re_project_dir()
-        json_save_patch =project_dir[0]
+        # 引用声明全局变量
+        GlobalDict._init()
+
+        # 报告生成路径,，取值公共变量中的路径
+        json_save_patch = GlobalDict.get_value('project_pwd').get('register_token')
         """  添加一个嘉宾   """
 
         with sync_playwright() as p:

@@ -1,7 +1,7 @@
 
 from playwright.sync_api import Page
 from playwright.sync_api import sync_playwright
-from data_factory.ProjectDir import UiProjectDri
+from data_factory.PageGlobalDict import GlobalDict
 import time
 import pytest
 from data_factory.DataParmes import DataCenter
@@ -14,9 +14,12 @@ class AddTicket:
         """  增加门票 """
         re_add_ticket= []
         wait =2
-        #浏览器状态存储路径
-        project_dir=UiProjectDri.re_project_dir()
-        json_save_patch =project_dir[0]
+        # 引用声明全局变量
+        GlobalDict._init()
+
+        # json_save_patch =project_dir[0]
+        # 报告生成路径,，取值公共变量中的路径
+        json_save_patch = GlobalDict.get_value('project_pwd').get('register_token')
         page_main_url = "https://create.test.gotin.top/guide/event/ticket"
         page_target_url ='https://create.test.gotin.top/myevent/overview'
         print(ticket_info)

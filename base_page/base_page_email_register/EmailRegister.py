@@ -4,6 +4,7 @@ import time
 from data_factory.DataParmes import DataCenter
 from playwright.sync_api import sync_playwright
 from data_factory.PageGlobalDict import  GlobalDict
+from data_factory.ProjectDir import UiProjectDri
 import pytest
 import os
 
@@ -21,7 +22,7 @@ class EmailRegister:
         """参数区  正向流程：添加邮箱注册用户--------------------------------------------"""
 
         wait = int(1)
-        re_list = []
+        email_re_list = []
         print(userdata)
 
         #引用声明全局变量
@@ -30,7 +31,9 @@ class EmailRegister:
         GlobalDict.get_value('project_pwd')
         #json_save_patch =project_dir[0]
         # 报告生成路径,，取值公共变量中的路径
-        json_save_patch =GlobalDict.get_value('project_pwd')[0]
+        project_dir =UiProjectDri().re_project_dir()
+        json_save_patch =project_dir[1]
+        print(json_save_patch)
 
         page_main_url = "https://login.test.gotin.top/login/phone/account"
         page_target_url ='https://create.test.gotin.top/guide/organizer/create'
@@ -44,6 +47,8 @@ class EmailRegister:
             # Go to https://login.test.gotin.top/login/phone/account
             page.goto(page_main_url)
             time.sleep(wait)
+            page.locator("text=邮箱").click()
+
             page.locator("input[type=\"text\"]").fill(userdata[5])
             # Click button:has-text("继续")
             page.locator("button:has-text(\"继续\")").click()
@@ -63,43 +68,41 @@ class EmailRegister:
             # Click input[type="password"]
             page.locator("input[type=\"password\"]").click()
             # Fill input[type="password"]
-            page.locator("input[type=\"password\"]").fill(userdata[3])
+            page.locator("input[type=\"password\"]").fill(userdata[4])
             # Click button:has-text("注册用户")
             page.locator("button:has-text(\"注册用户\")").click()
-            # 进行断言
-            page.wait_for_url("https://create.test.gotin.top/guide/organizer/create")
 
-            assert_url =page.url
-            re_list.append(assert_url)
-            print(re_list)
-            if page_target_url == assert_url :
-                print('手机号注册成功')
-            else:
-                print('手机号注册成功')
-            assert page_target_url == page.url
-            # 保存状态文件
-            os1 =os.path.dirname(os.path.realpath(__file__))
-            print(os1)
-
-            context.storage_state(path=json_save_patch)
-
+            page.wait_for_timeout(3000)
             # 获取当前页面元素，# 获取页面全文
             #html_page_value = page.content()
             page_main_title =page.inner_text("xpath=/ html / body / div[1] / section / section / main / div / div / div[1] / div / div[2]")
-            re_list.append(page_main_title)
-            print(page_main_title)
+            email_re_list.append(page_main_title)
+            #print(page_main_title)
             #print(html_page_value)
             #storage = context.storage_state()
             #os.environ["STORAGE"] = json.dumps(storage)
 
+            # 进行断言
+            # page.wait_for_url("https://create.test.gotin.top/guide/organizer/create")
+            assert_title = '首先，您需要创建一个主办方'
+
+            print(email_re_list)
+            if page_main_title == assert_title:
+                print('邮箱注册成功')
+            else:
+                print('邮箱注册失败')
+            assert assert_title == page_main_title
+            # 保存状态文件
+            context.storage_state(path=json_save_patch)
+            GlobalDict.set_value('email_re_list', email_re_list)
             context.close()
             browser.close()
-            GlobalDict.set_value('TelRegister_relist',re_list)
-            return re_list
+
+            return email_re_list
 
 
 
 
 if __name__ == '__main__':
 
-    creat = EmailRegister().add_email_user()
+    creat = EmailRegister().add_email_user(DataCenter().reg_parmes())

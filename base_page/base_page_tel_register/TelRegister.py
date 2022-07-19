@@ -26,15 +26,15 @@ class TelRegister:
 
         #引用声明全局变量
         GlobalDict._init()
-        GlobalDict.set_value('TelRegister_input', userdata)
-        GlobalDict.get_value('project_pwd')
+
+
         #json_save_patch =project_dir[0]
         # 报告生成路径,，取值公共变量中的路径
-        json_save_patch =GlobalDict.get_value('project_pwd')[0]
+        json_save_patch =GlobalDict.get_value('project_pwd').get('register_token')
 
         page_main_url = "https://login.test.gotin.top/login/phone/account"
         page_target_url ='https://create.test.gotin.top/guide/organizer/create'
-
+        GlobalDict.set_value('TelRegister_input', userdata)
         """参数区  正向流程：添加手机注册用户--------------------------------------------"""
         with sync_playwright() as p:
 
