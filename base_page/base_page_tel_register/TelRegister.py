@@ -5,15 +5,11 @@ from data_factory.DataParmes import DataCenter
 from playwright.sync_api import sync_playwright
 from data_factory.PageGlobalDict import  GlobalDict
 import pytest
-import os
+
 
 class TelRegister:
-
-    # 此处构造测试用例所需的数据，
-    #data = ['13853867111','leo','wang','12580','123qwe!@#']
-    #data =DataCenter().reg_parmes()
-    #print(data)
-    #print(type(data))
+    # 引用声明全局变量
+    GlobalDict._init()
     # 使用pytest.mark.parametrize引入用户数据
 
     @pytest.mark.parametrize('userdata',DataCenter().reg_parmes())
@@ -23,11 +19,6 @@ class TelRegister:
         wait = int(1)
         re_list = []
         print(userdata)
-
-        #引用声明全局变量
-        GlobalDict._init()
-
-
         #json_save_patch =project_dir[0]
         # 报告生成路径,，取值公共变量中的路径
         json_save_patch =GlobalDict.get_value('project_pwd').get('register_token')
@@ -94,8 +85,6 @@ class TelRegister:
                 print('手机号注册成功')
             assert page_target_url == page.url
             # 保存状态文件
-            os1 =os.path.dirname(os.path.realpath(__file__))
-            print(os1)
 
             context.storage_state(path=json_save_patch)
 

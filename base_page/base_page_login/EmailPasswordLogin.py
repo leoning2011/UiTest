@@ -3,6 +3,7 @@
 from playwright.sync_api import Page
 from playwright.sync_api import sync_playwright
 import time
+from data_factory.PageGlobalDict import GlobalDict
 from data_factory.DataParmes import DataCenter
 from data_factory.ApiToken import ApiToken
 import pytest
@@ -11,7 +12,7 @@ import json
 
 
 class EmailPasswordLogin:
-
+    GlobalDict._init()
     # 此处构造测试用例所需的数据，
     #data = ['13853867111','leo','wang','12580','123qwe!@#']
     #data =DataCenter().reg_parmes()
@@ -22,6 +23,10 @@ class EmailPasswordLogin:
     #@pytest.mark.parametrize('userdata',DataCenter().reg_parmes())
     def email_password_login(self):
         """  正向流程：邮箱 密码登录   """
+
+
+
+        json_path =GlobalDict.get_value('project_pwd').get('login_token')
 
         re_emali_code = []
 
@@ -67,7 +72,7 @@ class EmailPasswordLogin:
             # 保存状态文件
 
 
-            context.storage_state(path='tel_email_code_login.json')
+            context.storage_state(path=json_path)
 
             # 获取当前页面元素，# 获取页面全文
             # html_page_value = page.content()

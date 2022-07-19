@@ -45,7 +45,7 @@ class TestUnifiedTelRegisterAssert:
         ticket_info =AddTicket().add_ticket(DataCenter().ticket_info())
         print('--第6步-----------------手机号注册流程进行中----------填写票务信息并发布-----------')
         print(ticket_info)
-        assert ticket_info[0] == '已发布'
+        assert ticket_info[0] == '发布'
 
 
 if __name__ == '__main__':

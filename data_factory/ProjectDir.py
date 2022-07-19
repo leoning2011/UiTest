@@ -13,7 +13,7 @@ class UiProjectDri:
         json_path  =path_root.split('\\',5)
 
         re_main_dir = json_path[0] + re_sep + json_path[1] + re_sep  +json_path[2] + re_sep +json_path[3] + re_sep + json_path[4]
-        print(re_main_dir)
+        #print(re_main_dir)
         #获取ui自动化所处的路径
         #ui_project_patch = os.path.split(path_root)
         #re_main_dir =ui_project_patch[0]
@@ -36,7 +36,7 @@ class UiProjectDri:
         report_path = re_main_dir + re_sep + 'report'
 
         re_dir_dict['report_path'] =report_path
-        print(re_dir_dict)
+        #print(re_dir_dict)
 
         return re_dir_dict
 

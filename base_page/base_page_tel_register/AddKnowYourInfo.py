@@ -6,13 +6,12 @@ from data_factory.PageGlobalDict import GlobalDict
 from data_factory.ProjectDir import UiProjectDri
 
 class KnowYourInfo:
+    # 引用声明全局变量
+    GlobalDict._init()
     #@pytest.mark.parametrize('userdata', DataCenter().sponsor_info())
     def add_your_info(self):
         """  正向流程：让我们了解您 """
         re_know_info = []
-        # 引用声明全局变量
-        GlobalDict._init()
-
         # 报告生成路径,，取值公共变量中的路径
         json_save_patch = GlobalDict.get_value('project_pwd').get('register_token')
         """  正向流程：让我们了解您   """

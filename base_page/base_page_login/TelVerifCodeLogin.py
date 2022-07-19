@@ -11,18 +11,15 @@ import json
 
 
 class TelVerifCodeLogin:
+    GlobalDict._init()
 
-    # 此处构造测试用例所需的数据，
-    #data = ['13853867111','leo','wang','12580','123qwe!@#']
-    #data =DataCenter().reg_parmes()
-    #print(data)
-    #print(type(data))
     # 使用pytest.mark.parametrize引入用户数据
 
     #@pytest.mark.parametrize('userdata',DataCenter().reg_parmes())
     def tel_verif_code_login(self):
         """  正向流程：验证码登录   """
-        GlobalDict._init()
+
+
 
         json_path =GlobalDict.get_value('project_pwd').get('login_token')
 

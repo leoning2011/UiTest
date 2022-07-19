@@ -11,11 +11,8 @@ import os
 class EmailRegister:
 
     # 此处构造测试用例所需的数据，
-    #data = ['13853867111','leo','wang','12580','123qwe!@#']
-    #data =DataCenter().reg_parmes()
-    #print(data)
-    #print(type(data))
-    # 使用pytest.mark.parametrize引入用户数据
+    # 引用声明全局变量
+    GlobalDict._init()
 
     @pytest.mark.parametrize('userdata',DataCenter().reg_parmes())
     def add_email_user(self,userdata):
@@ -25,8 +22,7 @@ class EmailRegister:
         email_re_list = []
         print(userdata)
 
-        #引用声明全局变量
-        GlobalDict._init()
+
         GlobalDict.set_value('TelRegister_input', userdata)
         GlobalDict.get_value('project_pwd')
         #json_save_patch =project_dir[0]

@@ -7,14 +7,17 @@ from data_factory.DataParmes import DataCenter
 from data_factory.PageGlobalDict import GlobalDict
 
 class GreateSponsor:
+    # 引用声明全局变量
+    GlobalDict._init()
+
+
     @pytest.mark.parametrize('userdata', DataCenter().sponsor_info())
     def add_sponsor(self,sponsor_info):
         """  正向流程：首先，您需要创建一个主办方 """
         #wait = int(1)
         re_add_sponsor = []
         print(sponsor_info)
-        # 引用声明全局变量
-        GlobalDict._init()
+
 
         # 报告生成路径,，取值公共变量中的路径
         json_save_patch = GlobalDict.get_value('project_pwd').get('register_token')

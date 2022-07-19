@@ -2,6 +2,7 @@
 
 from playwright.sync_api import Page
 from playwright.sync_api import sync_playwright
+from data_factory.PageGlobalDict import GlobalDict
 import time
 from data_factory.DataParmes import DataCenter
 from data_factory.ApiToken import ApiToken
@@ -23,6 +24,9 @@ class TelPasswordLogin:
     def tel_password_login(self):
         """  正向流程：密码登录   """
 
+        GlobalDict._init()
+
+        json_path =GlobalDict.get_value('project_pwd').get('login_token')
         re_verif_code = []
 
         page_main_url = "https://login.test.gotin.top/login/phone/account"
@@ -77,7 +81,7 @@ class TelPasswordLogin:
             # 保存状态文件
 
 
-            context.storage_state(path='tel_verif_code_login.json')
+            context.storage_state(path=json_path)
 
             # 获取当前页面元素，# 获取页面全文
             # html_page_value = page.content()

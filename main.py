@@ -8,6 +8,6 @@ import pytest
 #pytest.main(['-v', '-s','./base_page_tel_register/EmailRegister.py',"--html=./report/report.html"])
 
 
-pytest.main(['-v', '-s','./unified_assert/test_unified_tel_register_assert.py',"--html=./report/report.html"])
+pytest.main(['-v', '-s',"--html=./report/report.html"])
 
 

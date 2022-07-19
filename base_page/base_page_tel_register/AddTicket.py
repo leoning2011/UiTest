@@ -9,13 +9,15 @@ from bs4 import BeautifulSoup
 import requests
 
 class AddTicket:
+    # 引用声明全局变量
+    GlobalDict._init()
+
     @pytest.mark.parametrize('userdata', DataCenter().ticket_info())
     def add_ticket(self,ticket_info):
         """  增加门票 """
         re_add_ticket= []
         wait =2
-        # 引用声明全局变量
-        GlobalDict._init()
+
 
         # json_save_patch =project_dir[0]
         # 报告生成路径,，取值公共变量中的路径

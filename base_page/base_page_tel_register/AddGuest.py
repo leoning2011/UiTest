@@ -7,13 +7,14 @@ from data_factory.DataParmes import DataCenter
 from data_factory.PageGlobalDict import GlobalDict
 
 class AddGuest:
+    # 引用声明全局变量
+    GlobalDict._init()
     @pytest.mark.parametrize('userdata', DataCenter().guest_info())
     def add_guest(self,guestinfo):
         """  添加一个嘉宾 """
         re_add_guest = []
         print(guestinfo)
-        # 引用声明全局变量
-        GlobalDict._init()
+
 
         # 报告生成路径,，取值公共变量中的路径
         json_save_patch = GlobalDict.get_value('project_pwd').get('register_token')
