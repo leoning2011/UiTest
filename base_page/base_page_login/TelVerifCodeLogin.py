@@ -1,14 +1,11 @@
 
 
-from playwright.sync_api import Page
-from playwright.sync_api import sync_playwright
 import time
-from data_factory.PageGlobalDict import GlobalDict
-from data_factory.ApiToken import ApiToken
 import pytest
 import os
 import json
-
+from playwright.sync_api import sync_playwright
+from data_factory.PageGlobalDict import GlobalDict
 
 class TelVerifCodeLogin:
     GlobalDict._init()

@@ -128,8 +128,9 @@ class DataCenter:
         :return:
         """
         # 声明空列表
-        user_info = {"user_name": "14955751413","verification_code": "12580"}
+        user_info = {"user_name": "17114261964","verification_code": "12580"}
         #print(data_value)
+        print(user_info.get('user_name'))
         return user_info
 
 

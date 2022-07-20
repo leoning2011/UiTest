@@ -10,7 +10,6 @@ class TestUnifiedResetPasswordAssert:
     # 引用声明全局变量
     GlobalDict._init()
 
-
     #@pytest.fixture(scope='class')
     def test_assert_reset_password(self):
 

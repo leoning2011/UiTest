@@ -11,13 +11,8 @@ import pytest
 import os
 
 class ResetPassword:
-
-    # 此处构造测试用例所需的数据，
-    #data = ['13853867111','leo','wang','12580','123qwe!@#']
-    #data =DataCenter().reg_parmes()
-    #print(data)
-    #print(type(data))
-    # 使用pytest.mark.parametrize引入用户数据
+    # 引用声明全局变量
+    GlobalDict._init()
 
     #@pytest.mark.parametrize('userdata',DataCenter().reg_parmes())
     def reset_password(self):
@@ -27,8 +22,7 @@ class ResetPassword:
         reset_password_list = []
         #print(userdata)
 
-        #引用声明全局变量
-        GlobalDict._init()
+
         # 报告生成路径,，取值公共变量中的路径
         json_path =GlobalDict.get_value('project_pwd').get('login_token')
 
@@ -90,51 +84,54 @@ class ResetPassword:
                 # 保存状态文件
                 context.storage_state(path=json_path)
                 try:
-                    page_err_message = page1.inner_text("text=用户密码错误")
-                    if page_err_message == '用户密码错误':
-                        '''-----------------------------------------------------------------------------------'''
-                        # Click text=输入当前的密码用户密码错误 >> input[type="password"]
-                        page1.click('xpath=/html/body/div[1]/div/div/div/div[2]/div[2]/div/form/div[1]/div/div/div/input')
-                        # Fill #el-id-5990-4
-                        page1.fill('xpath=/html/body/div[1]/div/div/div/div[2]/div[2]/div/form/div[1]/div/div/div/input',
-                                       '')
-                        page1.fill('xpath=/html/body/div[1]/div/div/div/div[2]/div[2]/div/form/div[1]/div/div/div/input',
-                                       'ccb123qwe!@#')
-                        # 点击输入新密码
-                        page1.locator("text=设置新密码密码至少为8位字符，并同时包含字母和数字 >> input[type=\"password\"]").click()
-                        # 输入新密码
-                        page1.locator("text=设置新密码密码至少为8位字符，并同时包含字母和数字 >> input[type=\"password\"]").fill("123qwe!@#")
+                    visible = page1.is_visible("text=用户密码错误")
+                    print(visible)
 
-                        #
-                        page1.click('xpath=/html/body/div[1]/div/div/div/div[2]/div[2]/div/form/div[3]/div/div/div/input')
-                        # Fill #el-id-5990-6
-                        page1.fill('xpath=/html/body/div[1]/div/div/div/div[2]/div[2]/div/form/div[3]/div/div/div/input',
+                    #page_err_message = page1.text_content("text=用户密码错误")
+                    if visible == True:
+                            '''-----------------------------------------------------------------------------------'''
+                            # Click text=输入当前的密码用户密码错误 >> input[type="password"]
+                            page1.click('xpath=/html/body/div[1]/div/div/div/div[2]/div[2]/div/form/div[1]/div/div/div/input')
+                                # Fill #el-id-5990-4
+                            page1.fill('xpath=/html/body/div[1]/div/div/div/div[2]/div[2]/div/form/div[1]/div/div/div/input',
+                                           '')
+                            page1.fill('xpath=/html/body/div[1]/div/div/div/div[2]/div[2]/div/form/div[1]/div/div/div/input',
+                                           'ccb123qwe!@#')
+                            # 点击输入新密码
+                            page1.locator("text=设置新密码密码至少为8位字符，并同时包含字母和数字 >> input[type=\"password\"]").click()
+                            # 输入新密码
+                            page1.locator("text=设置新密码密码至少为8位字符，并同时包含字母和数字 >> input[type=\"password\"]").fill("123qwe!@#")
+
+                            #
+                            page1.click('xpath=/html/body/div[1]/div/div/div/div[2]/div[2]/div/form/div[3]/div/div/div/input')
+                            # Fill #el-id-5990-6
+                            page1.fill('xpath=/html/body/div[1]/div/div/div/div[2]/div[2]/div/form/div[3]/div/div/div/input',
                                        "123qwe!@#")
-                        # 点击保存按钮
-                        page1.locator("button:has-text(\"保存\")").click()
-                        page1.wait_for_url(page_target_url)
-                        # 进行断言
-                        context.storage_state(path=json_path)
+                            # 点击保存按钮
+                            page1.locator("button:has-text(\"保存\")").click()
+                            page1.wait_for_url(page_target_url)
+                            # 进行断言
+                            context.storage_state(path=json_path)
 
-                        # 获取当前页面元素，# 获取页面全文
-                        # html_page_value = page.content()
-                        page1.locator("text=密码重置成功").click()
-                        page_suc_title = page1.inner_html("text=密码重置成功")
-                        reset_password_list.append(page_suc_title)
-                        #print(page_suc_title)
-                        # print(html_page_value)
-                        # storage = context.storage_state()
-                        # os.environ["STORAGE"] = json.dumps(storage)
-                        context.close()
-                        browser.close()
-                        GlobalDict.set_value('ResetPassword', reset_password_list)
-                        #print(GlobalDict.get_value('ResetPassword'))
-                        return reset_password_list
+                            # 获取当前页面元素，# 获取页面全文
+                            # html_page_value = page.content()
+                            page1.locator("text=密码重置成功").click()
+                            page_suc_title = page1.inner_html("text=密码重置成功")
+                            reset_password_list.append(page_suc_title)
+                            #print(page_suc_title)
+                            # print(html_page_value)
+                            # storage = context.storage_state()
+                            # os.environ["STORAGE"] = json.dumps(storage)
+                            context.close()
+                            browser.close()
+                            GlobalDict.set_value('ResetPassword', reset_password_list)
+                            #print(GlobalDict.get_value('ResetPassword'))
+                            return reset_password_list
+
                 except Exception as r:
-                    print('未知错误 %s' % (r))
+                        print('未知错误 %s' % (r))
         finally:
-                  return  reset_password_list
-
+                        return  reset_password_list
 
 
 

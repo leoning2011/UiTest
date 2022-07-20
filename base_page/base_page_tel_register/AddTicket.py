@@ -48,7 +48,7 @@ class AddTicket:
             #page.click('xpath=/html/body/div[1]/section/section/main/div/div/div[2]/form/div[1]/div/div[3]/div/div/div/div/input')
             time.sleep(2)
             #模拟键盘
-            page.type('xpath=/html/body/div[1]/section/section/main/div/div/div[2]/form/div[1]/div/div[3]/div/div/div/div/input','10', delay=100)
+            page.type('xpath=/html/body/div[1]/section/section/main/div/div/div[2]/form/div[1]/div/div[3]/div/div/div/div/input','1', delay=10)
             #page.keyboard('11')
             #page.press('#el-id-9180-65','11')
            #page.press("xpath=/html/body/div[1]/section/section/main/div/div/div[2]/form/div[1]/div/div[3]/div/div/div/div/input", 'Enter')
