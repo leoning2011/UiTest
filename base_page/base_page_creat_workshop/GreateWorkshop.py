@@ -43,53 +43,59 @@ class GreateWorkshop:
 
                 '''---------------------------------------分割线-------------------------------------------'''
 
+                # Click div:has-text("大会彩虹传媒有限公司的活动7月19日 0:00 至 7月21日 0:00已发布复制链接管理进入活动") >> nth=2
+                page.locator("div:has-text(\"大会彩虹传媒有限公司的活动7月19日 0:00 至 7月21日 0:00已发布复制链接管理进入活动\")").nth(2).click()
                 # Click button:has-text("创建活动")
                 page.locator("button:has-text(\"创建活动\")").click()
-                # Click text=举办一场大会
-                page.locator("text=举办一场大会").click()
-                page.wait_for_url("https://create.test.gotin.top/create/event")
-                # 选择中英双语
+                # Click text=组织一场研讨会
+                page.locator("text=组织一场研讨会").click()
+                page.wait_for_url("https://create.test.gotin.top/create/workshop")
+
+                # 选择语种
                 page.locator("label:nth-child(3) > .el-radio__input > .el-radio__inner").click()
-                time.sleep(1)
-                # Click #el-id-8853-261
-                page.locator("#el-id-8853-261").click()
-                # Click #el-id-8853-261
-                page.locator("#el-id-8853-261").click()
-                # Fill #el-id-8853-261
-                page.locator("#el-id-8853-261").fill("1212")
-                # Click #el-id-8853-262
-                page.locator("#el-id-8853-262").click()
-                # Fill #el-id-8853-262
-                page.locator("#el-id-8853-262").fill("1212")
-                # Click text=中文0/1500 >> textarea
-                page.locator("text=中文0/1500 >> textarea").click()
-                # Click text=中文0/1500 >> textarea
-                page.locator("text=中文0/1500 >> textarea").click()
-                # Fill text=中文0/1500 >> textarea
-                page.locator("text=中文0/1500 >> textarea").fill("12121")
-                # Click text=英文0/1500 >> textarea
-                page.locator("text=英文0/1500 >> textarea").click()
-                # Fill text=英文0/1500 >> textarea
-                page.locator("text=英文0/1500 >> textarea").fill("1212")
-                # Click div:nth-child(11) > .el-form-item__content > div > .select-trigger > .el-input > .el-input__wrapper > .el-input__suffix > .el-input__suffix-inner > .el-icon > svg >> nth=0
-                page.locator(
-                    "div:nth-child(11) > .el-form-item__content > div > .select-trigger > .el-input > .el-input__wrapper > .el-input__suffix > .el-input__suffix-inner > .el-icon > svg").first.click()
-                # Click li:has-text("创业")
-                page.locator("li:has-text(\"创业\")").click()
-                # Click div:nth-child(2) > .el-input__wrapper > .el-input__suffix > .el-input__suffix-inner > .el-icon > svg
-                page.locator(
-                    "div:nth-child(2) > .el-input__wrapper > .el-input__suffix > .el-input__suffix-inner > .el-icon > svg").click()
-                # Click [placeholder="主标签"]
-                page.locator("[placeholder=\"主标签\"]").click()
-                # Click li:has-text("IT互联网")
-                page.locator("li:has-text(\"IT互联网\")").click()
-                # Click .el-select__input
-                page.locator(".el-select__input").click()
-                # Click .el-select__input
-                page.locator(".el-select__input").click()
-                # Click button:has-text("创建活动")
-                page.locator("button:has-text(\"创建活动\")").click()
+                time.sleep(2)
+                # 填写中文标题
+                page.click('xpath=/html/body/div[1]/section/section/main/div[2]/div/form/div[2]/div[1]/div/div[1]/div/input')
+                page.fill('xpath=/html/body/div[1]/section/section/main/div[2]/div/form/div[2]/div[1]/div/div[1]/div/input','战斗天使')
+                # 填写英文标题
+                page.click('xpath=/html/body/div[1]/section/section/main/div[2]/div/form/div[2]/div[2]/div/div[1]/div/input')
+                page.fill('xpath=/html/body/div[1]/section/section/main/div[2]/div/form/div[2]/div[2]/div/div[1]/div/input','Battle Angel Alitalia')
+
+                # 从英文标题切换到中文详情
+
+                page.locator('xpath=/html/body/div[1]/section/section/main/div[2]/div/form/div[2]/div[2]/div/div[1]/div/input').press("Tab")
+                # 模拟键盘输入
+                page.keyboard.press('1')
+                # 中文详情切换到英文详情
+                page.locator('xpath=/html/body/div[1]/section/section/main/div[2]/div/form/div[4]/div[1]/div[1]').press("Tab")
+                # 模拟键盘输入
+                page.keyboard.press('1')
+                # 英文详情切换到时区
+                page.locator('xpath=/html/body/div[1]/section/section/main/div[2]/div/form/div[4]/div[2]/div[1]').press("Tab")
+                # 选择时区
+                page.click("xpath=/html/body/div[1]/section/section/main/div[2]/div/form/div[9]/div/div/div/div/div/input")
+                #page.locator("li:has-text(\"北京，新加坡，香港 (+08:00)\")").click()
+                page.locator("text=叶卡捷琳堡，伊斯兰堡 (+05:00)").click()
+                # 添加主持人
+                page.click('xpath=/html/body/div[1]/section/section/main/div[2]/div/form/div[10]/div/div/div/div/div/div/input')
+                page.click('xpath=/html/body/div[3]/div[6]/div/div/div[1]/ul/li/div')
+                # Click [placeholder="请输入价格，0为免费票"]
+                page.locator("[placeholder=\"请输入价格，0为免费票\"]").click()
+                # Fill [placeholder="请输入价格，0为免费票"]
+                page.locator("[placeholder=\"请输入价格，0为免费票\"]").fill("10")
+                # Click button:has-text("创建工作坊")
+                page.locator("button:has-text(\"创建工作坊\")").click()
                 page.wait_for_url("https://create.test.gotin.top/myevent/overview")
+                # Click div[role="alert"]:has-text("创建成功")
+                page.locator("div[role=\"alert\"]:has-text(\"创建成功\")").click()
+                page_suc_title = page.inner_html("text=创建成功")
+                create_workshop_list.append(page_suc_title)
+                # Click button:has-text("发布")
+                page.locator("button:has-text(\"发布\")").click()
+                # Click div[role="alert"]:has-text("发布成功")
+                page.locator("div[role=\"alert\"]:has-text(\"发布成功\")").click()
+                page_release_title = page.inner_html("text=发布成功")
+                create_workshop_list.append(page_release_title)
 
                 '''---------------------------------------分割线-------------------------------------------'''
 

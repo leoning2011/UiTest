@@ -78,6 +78,7 @@ class ApiResponse:
 
 if __name__ == '__main__':
     s1=ApiResponse().api_token(DataCenter().user_info_verification_code())
+    s2 =ApiResponse().api_user_info_hash(s1)
     ss =ApiResponse().api_organization_info_hash(s1)
 
 

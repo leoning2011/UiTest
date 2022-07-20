@@ -1,6 +1,6 @@
 
 
-from base_page.base_page_creat_workshop.GreateWorkshop import GreateWorkshop
+from base_page.base_page_creat_event.GreateEvent import GreateWorkshop
 from data_factory.PageGlobalDict import GlobalDict
 import pytest
 
