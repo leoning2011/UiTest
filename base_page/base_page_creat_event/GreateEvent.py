@@ -1,9 +1,9 @@
 
 
 import time
-from data_factory.DataParmes import DataCenter
+from common.DataParmes import DataCenter
 from playwright.sync_api import sync_playwright
-from data_factory.PageGlobalDict import  GlobalDict
+from common.PageGlobalDict import  GlobalDict
 import pytest
 import os
 
@@ -14,7 +14,7 @@ class GreateEvent:
     GlobalDict._init()
     #@pytest.mark.parametrize('userdata',DataCenter().reg_parmes())
     def create_event(self):
-        """参数区  重置密码--------------------------------------------------------------"""
+        """参数区  大会-新增论坛会议--------------------------------------------------------------"""
 
         wait = int(1)
         create_event_list = []
@@ -26,7 +26,7 @@ class GreateEvent:
         page_main_url = "https://create.test.gotin.top/eventlists"
         page_target_url ='https://create.test.gotin.top/myevent/overview'
 
-        """参数区  重置密码--------------------------------------------------------------"""
+        """参数区  大会-新增论坛会议--------------------------------------------------------------"""
 
         with sync_playwright() as p:
 

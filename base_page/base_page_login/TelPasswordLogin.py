@@ -2,9 +2,9 @@
 
 from playwright.sync_api import Page
 from playwright.sync_api import sync_playwright
-from data_factory.PageGlobalDict import GlobalDict
+from common.PageGlobalDict import GlobalDict
 import time
-from data_factory.DataParmes import DataCenter
+from common.DataParmes import DataCenter
 import pytest
 import os
 import json

@@ -1,7 +1,7 @@
 
 
-from base_page.base_page_creat_event.GreateEvent import GreateWorkshop
-from data_factory.PageGlobalDict import GlobalDict
+from base_page.base_page_creat_workshop import GreateWorkshop
+from common.PageGlobalDict import GlobalDict
 import pytest
 
 class TestUnifiedCreateWorkshopAssert:

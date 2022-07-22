@@ -5,26 +5,26 @@ from common.PageGlobalDict import  GlobalDict
 import pytest
 import os
 
-class GreateEventRelease:
+class GreateEventInNewWorld:
 
     # 此处构造测试用例所需的数据，
     # 引用声明全局变量
     GlobalDict._init()
     #@pytest.mark.parametrize('userdata',DataCenter().reg_parmes())
-    def create_event_release(self):
-        """参数区  发布活动--------------------------------------------------------------"""
+    def create_event_in_new_world(self):
+        """参数区  进入活动界面并离开--------------------------------------------------------------"""
 
         wait = int(1)
-        create_event_release_list = []
+        create_event_sign_up_list = []
         #print(userdata)
 
         # 报告生成路径,，取值公共变量中的路径
         json_path =GlobalDict.get_value('project_pwd').get('login_token')
 
         page_main_url = "https://create.test.gotin.top/myevent/overview"
-        page_target_url ='https://create.test.gotin.top/myevent/overview'
 
-        """参数区  发布活动--------------------------------------------------------------"""
+
+        """参数区  进入活动界面并离开--------------------------------------------------------------"""
 
         with sync_playwright() as p:
 
@@ -40,17 +40,21 @@ class GreateEventRelease:
                 page.goto(page_main_url)
 
                 '''---------------------------------------分割线-------------------------------------------'''
+                # Click text=预览及发布预览您的活动&发布您的活动进入活动 >> button
+                with page.expect_popup() as popup_info:
+                    page.locator("text=预览及发布预览您的活动&发布您的活动进入活动 >> button").click()
 
-                # Click main button:has-text("发布")
-                page.locator("main button:has-text(\"发布\")").click()
-                # Click text=发布成功
+                time.sleep(wait)
 
-                page_release_status = page.inner_html("text=发布成功")
-                create_event_release_list.append(page_release_status)
-                # Click button:has-text("已发布")
-                page.locator("button:has-text(\"已发布\")").click()
-                event_status = page.inner_html("text=已发布")
-                create_event_release_list.append(event_status)
+                page1 = popup_info.value
+
+                time.sleep(wait)
+                page1.click('xpath=/html/body/div/div/div[1]/div/div/div[1]/div[1]/div/div/button')
+                page1.locator("button:has-text(\"报名\")").click()
+                time.sleep(wait)
+                #page2 = popup_info.value
+                page_release_status = page1.inner_html("text=分享")
+                create_event_sign_up_list.append(page_release_status)
 
 
 
@@ -60,24 +64,23 @@ class GreateEventRelease:
                 # 进行断言
 
                 assert_url = page.url
-                create_event_release_list.append(assert_url)
-                print(create_event_release_list)
-                if page_target_url == assert_url and page_release_status =='发布成功':
-                    print('发布成功')
+                create_event_sign_up_list.append(assert_url)
+                print(create_event_sign_up_list)
+                if  page_release_status =='分享' :
+                    print('报名成功')
                 else:
-                    print('发布失败')
-                assert page_release_status == '发布成功'
-                assert event_status == '已发布'
-                assert page_target_url == page.url
+                    print('报名失败')
+                assert page_release_status == '分享'
+
 
                 # 保存状态文件
 
                 context.storage_state(path=json_path)
 
-                print(create_event_release_list)
+                print(create_event_sign_up_list)
                 context.close()
                 browser.close()
-                return create_event_release_list
+                return create_event_sign_up_list
 
 if __name__ == '__main__':
-    creat = GreateEventRelease().create_event_release()
+    creat = GreateEventInNewWorld().create_event_in_new_world()

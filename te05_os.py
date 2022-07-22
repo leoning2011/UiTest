@@ -1,5 +1,5 @@
 
-from data_factory.PageGlobalDict import  GlobalDict
+from common.PageGlobalDict import  GlobalDict
 
 import os
 

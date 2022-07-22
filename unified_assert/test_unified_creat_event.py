@@ -5,7 +5,9 @@ from base_page.base_page_creat_event.GreateEventAddGuest import GreateEventAddGu
 from base_page.base_page_creat_event.GreateEventAddAgenda import GreateEventAddAgenda
 from base_page.base_page_creat_event.GreateEventAddTicket import GreateEventAddTicket
 from base_page.base_page_creat_event.GreateEventRelease import GreateEventRelease
-from data_factory.PageGlobalDict import GlobalDict
+from base_page.base_page_creat_event.GreateEventReleaseSignUp import GreateEventReleaseSignUp
+from base_page.base_page_creat_event.GreateEventInNewWorld import GreateEventInNewWorld
+from common.PageGlobalDict import GlobalDict
 import pytest
 
 class TestUnifiedCreateEventAssert:
@@ -69,6 +71,28 @@ class TestUnifiedCreateEventAssert:
         assert reg_event_release[0] == '发布成功'
         assert reg_event_release[1] == '已发布'
         assert reg_event_release[2] == 'https://create.test.gotin.top/myevent/overview'
+
+    def test_assert_create_event_release_singup(self):
+        reg_event_release_singup = GreateEventReleaseSignUp().create_event_release_sign_up()
+        print('--第6步----------------创建大会------------报名------------------------')
+        print(reg_event_release_singup)
+
+        # common_dict = GlobalDict.get_value('ResetPassword')
+        # print(common_dict)
+        assert reg_event_release_singup[0] == '报名'
+        assert reg_event_release_singup[1] == '进入活动'
+
+
+
+    def test_assert_create_event_release_in_new_world(self):
+        reg_event_release_in_new_world = GreateEventInNewWorld().create_event_in_new_world()
+        print('--第7步----------------创建大会-----报名成功后进入活动并离开--------------')
+        print(reg_event_release_in_new_world)
+
+        # common_dict = GlobalDict.get_value('ResetPassword')
+        # print(common_dict)
+        assert reg_event_release_in_new_world[0] == '分享'
+
 
 if __name__ == '__main__':
     #ss =TestUnifiedLoginAssert().test_assert_verif_code_login()

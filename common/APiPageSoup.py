@@ -4,7 +4,7 @@ from DataParmes import DataCenter
 import pytest
 import requests
 import json
-from data_factory.ApiToken import  ApiToken
+from common.ApiToken import  ApiToken
 from bs4 import BeautifulSoup
 
 import warnings

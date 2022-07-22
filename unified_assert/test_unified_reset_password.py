@@ -2,7 +2,7 @@
 
 from base_page.base_page_reset_password.ResetPassword import ResetPassword
 from base_page.base_page_login.TelVerifCodeLogin import TelVerifCodeLogin
-from data_factory.PageGlobalDict import GlobalDict
+from common.PageGlobalDict import GlobalDict
 import pytest
 
 class TestUnifiedResetPasswordAssert:

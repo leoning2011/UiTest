@@ -1,10 +1,10 @@
 
 from playwright.sync_api import Page
 from playwright.sync_api import sync_playwright
-from data_factory.PageGlobalDict import GlobalDict
+from common.PageGlobalDict import GlobalDict
 import time
 import pytest
-from data_factory.DataParmes import DataCenter
+from common.DataParmes import DataCenter
 from bs4 import BeautifulSoup
 import requests
 

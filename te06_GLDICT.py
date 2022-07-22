@@ -1,4 +1,4 @@
-from data_factory.PageGlobalDict import MY_GLOBAL_DICT
+from common.PageGlobalDict import MY_GLOBAL_DICT
 
 
 

@@ -1,10 +1,10 @@
 
 
 import time
-from data_factory.DataParmes import DataCenter
+from common.DataParmes import DataCenter
 from playwright.sync_api import sync_playwright
-from data_factory.PageGlobalDict import  GlobalDict
-from data_factory.ProjectDir import UiProjectDri
+from common.PageGlobalDict import  GlobalDict
+from common.ProjectDir import UiProjectDri
 import pytest
 import os
 

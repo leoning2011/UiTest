@@ -4,7 +4,7 @@ from base_page.base_page_tel_register.AddKnowYourInfo import KnowYourInfo
 from base_page.base_page_tel_register.AddGuest import AddGuest
 from base_page.base_page_tel_register.AddSchedule import AddSchedule
 from base_page.base_page_tel_register.AddTicket import AddTicket
-from data_factory.DataParmes import DataCenter
+from common.DataParmes import DataCenter
 import pytest
 
 class TestUnifiedTelRegisterAssert:
@@ -45,7 +45,7 @@ class TestUnifiedTelRegisterAssert:
         ticket_info =AddTicket().add_ticket(DataCenter().ticket_info())
         print('--第6步-----------------手机号注册流程进行中----------填写票务信息并发布-----------')
         print(ticket_info)
-        assert ticket_info[0] == '发布'
+        assert ticket_info[0] == '发布' or ticket_info[0] == '已发布'
 
 
 if __name__ == '__main__':

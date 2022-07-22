@@ -5,7 +5,7 @@ import pytest
 import os
 import json
 from playwright.sync_api import sync_playwright
-from data_factory.PageGlobalDict import GlobalDict
+from common.PageGlobalDict import GlobalDict
 
 class TelVerifCodeLogin:
     GlobalDict._init()

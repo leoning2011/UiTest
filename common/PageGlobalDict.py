@@ -1,5 +1,5 @@
 
-from data_factory.ProjectDir import UiProjectDri
+from common.ProjectDir import UiProjectDri
 
 class GlobalDict:
     '''

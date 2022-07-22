@@ -2,8 +2,8 @@
 from playwright.sync_api import sync_playwright
 import time
 import pytest
-from data_factory.PageGlobalDict import GlobalDict
-from data_factory.ProjectDir import UiProjectDri
+from common.PageGlobalDict import GlobalDict
+from common.ProjectDir import UiProjectDri
 
 class KnowYourInfo:
     # 引用声明全局变量

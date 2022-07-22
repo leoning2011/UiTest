@@ -1,6 +1,6 @@
 
 
-from data_factory.DataParmes import  DataCenter
+from common.DataParmes import  DataCenter
 import pytest
 import requests
 import json

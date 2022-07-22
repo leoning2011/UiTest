@@ -1,3 +1,3 @@
 
-from data_factory.ApiToken import ApiResponse
+from common.ApiToken import ApiResponse
 

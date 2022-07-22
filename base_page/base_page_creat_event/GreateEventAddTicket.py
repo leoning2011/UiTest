@@ -1,7 +1,7 @@
 import time
-from data_factory.DataParmes import DataCenter
+from common.DataParmes import DataCenter
 from playwright.sync_api import sync_playwright
-from data_factory.PageGlobalDict import  GlobalDict
+from common.PageGlobalDict import  GlobalDict
 import pytest
 import os
 
@@ -12,7 +12,7 @@ class GreateEventAddTicket:
     GlobalDict._init()
     #@pytest.mark.parametrize('userdata',DataCenter().reg_parmes())
     def create_event_add_ticket(self):
-        """参数区  重置密码--------------------------------------------------------------"""
+        """参数区  新增票务--------------------------------------------------------------"""
 
         wait = int(1)
         create_event_add_ticket_list = []
@@ -24,7 +24,7 @@ class GreateEventAddTicket:
         page_main_url = "https://create.test.gotin.top/myevent/overview"
         page_target_url ='https://create.test.gotin.top/myevent/overview'
 
-        """参数区  重置密码--------------------------------------------------------------"""
+        """参数区  新增票务--------------------------------------------------------------"""
 
         with sync_playwright() as p:
 
@@ -51,7 +51,17 @@ class GreateEventAddTicket:
 
                 # 请输入价格
                 page.locator("[placeholder=\"请输入价格，0为免费票\"]").fill("1")
+
+                #开始日期
+                page.fill(
+                    'xpath=/html/body/div[1]/section/section/main/div[2]/div[2]/div/form/div[4]/div/div/div/input',
+                    '')
+                page.fill('xpath=/html/body/div[1]/section/section/main/div[2]/div[2]/div/form/div[4]/div/div/div/input','00:00')
+                page.click("text=中文0/500 >> textarea")
+                time.sleep(wait)
+
                 # 中文描述
+                page.locator("text=中文0/500 >> textarea").click()
                 page.locator("text=中文0/500 >> textarea").fill("121311")
                 # 英文描述
                 page.locator("text=英文0/500 >> textarea").fill("1231321")
@@ -92,3 +102,11 @@ class GreateEventAddTicket:
 
 if __name__ == '__main__':
     creat = GreateEventAddTicket().create_event_add_ticket()
+
+
+
+
+
+
+
+

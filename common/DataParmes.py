@@ -1,4 +1,4 @@
-from data_factory.FakeData import DeptData
+from common.FakeData import DeptData
 
 class DataCenter:
     @staticmethod
