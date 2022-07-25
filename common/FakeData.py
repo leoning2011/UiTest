@@ -52,7 +52,7 @@ class DeptData:
                       7: random.choice([i for i in range(10) if i not in [4, 9]]),
                       8: random.randint(0, 9), }[second_spot]
         remain_spot = random.randint(9999999, 100000000)
-        phone_num = "1{}{}{}".format(second_spot, third_spot, remain_spot)
+        phone_num = "2{}{}{}".format(second_spot, third_spot,remain_spot)
 
         #print(phone_num)
         return phone_num
@@ -146,4 +146,4 @@ class DeptData:
 
 if __name__ == '__main__':
     #p1 =DeptData().person_tel_num()
-    p2 =DeptData().sponorText()
+    p2 =DeptData().get_phone_num()
