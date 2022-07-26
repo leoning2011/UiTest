@@ -1,5 +1,5 @@
 from selenium import webdriver
-from common.driver_factory import Driver
+from common.DriverFactory import Driver
 class BasePage:
     def __init__(self, driver=None):
         # 读取配置文件中的browserName

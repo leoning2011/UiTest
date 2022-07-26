@@ -47,11 +47,7 @@ class GreateEventInNewWorld:
                 time.sleep(wait)
 
                 page1 = popup_info.value
-
-                time.sleep(wait)
                 page1.click('xpath=/html/body/div/div/div[1]/div/div/div[1]/div[1]/div/div/button')
-                page1.locator("button:has-text(\"报名\")").click()
-                time.sleep(wait)
                 #page2 = popup_info.value
                 page_release_status = page1.inner_html("text=分享")
                 create_event_sign_up_list.append(page_release_status)
@@ -67,9 +63,9 @@ class GreateEventInNewWorld:
                 create_event_sign_up_list.append(assert_url)
                 print(create_event_sign_up_list)
                 if  page_release_status =='分享' :
-                    print('报名成功')
+                    print('进入活动成功')
                 else:
-                    print('报名失败')
+                    print('进入活动失败')
                 assert page_release_status == '分享'
 
 

@@ -1,6 +1,5 @@
 
 
-import time
 from common.DataParmes import DataCenter
 from playwright.sync_api import sync_playwright
 from common.PageGlobalDict import  GlobalDict
@@ -18,18 +17,16 @@ class EmailRegister:
     def add_email_user(self,userdata):
         """参数区  正向流程：添加邮箱注册用户--------------------------------------------"""
 
-        wait = int(1)
+        wait = float(3000)
         email_re_list = []
         print(userdata)
 
 
         GlobalDict.set_value('TelRegister_input', userdata)
         GlobalDict.get_value('project_pwd')
-        #json_save_patch =project_dir[0]
         # 报告生成路径,，取值公共变量中的路径
-        project_dir =UiProjectDri().re_project_dir()
-        json_save_patch =project_dir[1]
-        print(json_save_patch)
+        json_save_patch = GlobalDict.get_value('project_pwd').get('register_token')
+
 
         page_main_url = "https://login.test.gotin.top/login/phone/account"
         page_target_url ='https://create.test.gotin.top/guide/organizer/create'
@@ -38,11 +35,11 @@ class EmailRegister:
         with sync_playwright() as p:
 
             browser = p.chromium.launch(headless=False)
-            context = browser.new_context()
+            context = browser.new_context(geolocation={'latitude': -21.252031, 'longitude': 175.067252})
             page = context.new_page()
             # Go to https://login.test.gotin.top/login/phone/account
             page.goto(page_main_url)
-            time.sleep(wait)
+            page.wait_for_timeout(wait)
             page.locator("text=邮箱").click()
 
             page.locator("input[type=\"text\"]").fill(userdata[5])
@@ -68,7 +65,7 @@ class EmailRegister:
             # Click button:has-text("注册用户")
             page.locator("button:has-text(\"注册用户\")").click()
 
-            page.wait_for_timeout(3000)
+            page.wait_for_timeout(wait)
             # 获取当前页面元素，# 获取页面全文
             #html_page_value = page.content()
             page_main_title =page.inner_text("xpath=/ html / body / div[1] / section / section / main / div / div / div[1] / div / div[2]")

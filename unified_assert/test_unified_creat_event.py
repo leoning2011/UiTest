@@ -80,7 +80,7 @@ class TestUnifiedCreateEventAssert:
         # common_dict = GlobalDict.get_value('ResetPassword')
         # print(common_dict)
         assert reg_event_release_singup[0] == '报名'
-        assert reg_event_release_singup[1] == '进入活动'
+        assert reg_event_release_singup[1] == '分享'
 
 
 

@@ -1,9 +1,16 @@
 import configparser
 import threading
+import os
 
 class Config:
     # __new__ 用于创建实例，而__init__用于初始化实例
-    __configfile = r'C:\Users\admin\PycharmProjects\UiTest\config\config.ini'
+    # 获取当前系统的分隔符
+    path_sep = os.path.sep
+    #获取当前配置文件的路径
+    pwd =os.getcwd()
+    __filepath = pwd + path_sep + 'config.ini'
+
+    __configfile = __filepath
     __flag = False
     __instance_lock = threading.Lock() # 定义一把锁
 

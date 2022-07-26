@@ -39,13 +39,12 @@ class EmailPasswordLogin:
             page = context.new_page()
             # Go to https://login.test.gotin.top/login/phone/account
             page.goto(page_main_url)
+            page.goto(page_main_url)
+            page.wait_for_url(page_main_url)
+            page.locator("text=邮箱").first.click()
+            page.fill('xpath=/html/body/div/div[2]/div/div/div/div[4]/form/div/div/div/div/input','mimeng4a@163.com')
 
-            page.locator("text=邮箱").click()
 
-            page.locator("input[type=\"text\"]").click()
-            # Fill input[type="text"]
-            page.locator("input[type=\"text\"]").fill("mimeng4a@163.com")
-            # Click button:has-text("继续")
             page.locator("button:has-text(\"继续\")").click()
             page.wait_for_url("https://login.test.gotin.top/login/email/detail")
             # Fill input[type="password"]
@@ -54,7 +53,7 @@ class EmailPasswordLogin:
             page.locator("button:has-text(\"登录\")").click()
 
             page_main_title = page.inner_html("text=登录成功")
-            time.sleep(3)
+            page.wait_for_timeout(5000)
             page.wait_for_url(page_target_url)
 
 

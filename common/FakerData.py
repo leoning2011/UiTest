@@ -52,7 +52,7 @@ class DeptData:
                       7: random.choice([i for i in range(10) if i not in [4, 9]]),
                       8: random.randint(0, 9), }[second_spot]
         remain_spot = random.randint(9999999, 100000000)
-        phone_num = "2{}{}{}".format(second_spot, third_spot,remain_spot)
+        phone_num = "1{}{}{}".format(second_spot, third_spot,remain_spot)
 
         #print(phone_num)
         return phone_num
@@ -144,6 +144,30 @@ class DeptData:
         return ticket_info
 
 
+    @staticmethod
+    def re_latitude():
+        """
+        返回  地理坐标(纬度)
+        :return:
+        """
+        fake = Faker()
+        re_latitude = fake.latitude()
+        print(re_latitude)
+        return re_latitude
+
+    @staticmethod
+    def re_longitude():
+        """
+        返回  longitude()：地理坐标(经度)
+        :return:
+        """
+        fake = Faker()
+        re_longitude = fake.longitude()
+        print(re_longitude)
+        return re_longitude
+
+
 if __name__ == '__main__':
     #p1 =DeptData().person_tel_num()
-    p2 =DeptData().get_phone_num()
+    p2 =DeptData().re_latitude()
+    p3 =DeptData().re_longitude()

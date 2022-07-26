@@ -47,63 +47,29 @@ class GreateEventReleaseSignUp:
                     page.locator("text=预览及发布预览您的活动&发布您的活动进入活动 >> button").click()
                 page1 = popup_info.value
                 page1.wait_for_timeout(wait)
+                page1.locator("text=加入活动").first.click()
 
 
                 visible = page1.is_visible("text=加入活动")
                 print(visible)
+                print(visible)
                 if visible == True:
                     # Click text=中文English进入活动我的活动联系人个人信息语言中文English创建中心退出 >> #head
-                    page1.locator("text=加入活动").first.click()
 
-                    page1.wait_for_timeout(wait)
-                    page_release_status1 = page1.inner_html("text=报名")
+                    page_release_status1 = page1.inner_html("text=进入活动")
                     create_event_sign_up_list.append(page_release_status1)
-
-
-
-                elif  page1.is_visible("text=报名") == True:
-                        page1.wait_for_timeout(wait)
-                        page1.locator("button:has-text(\"报名\")").click()
-                        page_release_status2 = page1.inner_html("text=进入活动")
-                        create_event_sign_up_list.append(page_release_status2)
-                        '''---------------------------------------分割线-------------------------------------------'''
-                        # 进行断言
-
-                        assert_url = page1.url
-                        create_event_sign_up_list.append(assert_url)
-                        print(create_event_sign_up_list)
-                        if   create_event_sign_up_list[0] =='报名' and create_event_sign_up_list[1] =='进入活动':
-                            print('报名成功')
-                        else:
-                            print('报名失败')
-
-                        assert create_event_sign_up_list[0] == '报名'
-                        assert create_event_sign_up_list[1] == '进入活动'
-
-
-                        # 保存状态文件
-
-                        context.storage_state(path=json_path)
-
-                        print(create_event_sign_up_list)
-                        context.close()
-                        browser.close()
-                        return create_event_sign_up_list
-                else:
-                    page_release_status2 = page1.inner_html("text=进入活动")
-                    create_event_sign_up_list.append(page_release_status2)
                     '''---------------------------------------分割线-------------------------------------------'''
                     # 进行断言
 
                     assert_url = page1.url
                     create_event_sign_up_list.append(assert_url)
                     print(create_event_sign_up_list)
-                    if  create_event_sign_up_list[1] == '进入活动':
+                    if create_event_sign_up_list[0] == '进入活动':
                         print('报名成功')
                     else:
                         print('报名失败')
 
-                    assert create_event_sign_up_list[1] == '进入活动'
+                    assert create_event_sign_up_list[0] == '进入活动'
 
                     # 保存状态文件
 
@@ -114,6 +80,68 @@ class GreateEventReleaseSignUp:
                     browser.close()
                     return create_event_sign_up_list
 
+
+                elif  page1.is_visible("text=报名") == True:
+                        page_release_status1 = page1.inner_html("text=报名")
+                        create_event_sign_up_list.append(page_release_status1)
+                        print(create_event_sign_up_list)
+                        page1.locator("button:has-text(\"报名\")").click()
+                        page_release_status2 = page1.inner_html("text=分享")
+                        create_event_sign_up_list.append(page_release_status2)
+                        '''---------------------------------------分割线-------------------------------------------'''
+                        # 进行断言
+
+                        assert_url = page1.url
+                        create_event_sign_up_list.append(assert_url)
+                        print(create_event_sign_up_list)
+                        if create_event_sign_up_list[0] =='报名' and create_event_sign_up_list[1] =='分享':
+                            print('报名成功')
+                        else:
+                            print('报名失败')
+
+                        assert create_event_sign_up_list[0] == '报名'
+                        assert create_event_sign_up_list[1] == '分享'
+
+                        # 保存状态文件
+
+                        context.storage_state(path=json_path)
+
+                        print(create_event_sign_up_list)
+                        context.close()
+                        browser.close()
+                        return create_event_sign_up_list
+
+                else:
+                    page_release_status1 = page1.inner_html("text=报名")
+                    create_event_sign_up_list.append(page_release_status1)
+                    print(page_release_status1)
+                    page1.wait_for_timeout(wait)
+                    page1.locator("button:has-text(\"报名\")").click()
+
+                    page1.wait_for_timeout(wait)
+                    page_release_status1 = page1.inner_html("text=分享")
+                    create_event_sign_up_list.append(page_release_status1)
+                    # 进行断言
+
+                    assert_url = page1.url
+                    create_event_sign_up_list.append(assert_url)
+                    print(create_event_sign_up_list)
+                    if create_event_sign_up_list[0] == '报名' and create_event_sign_up_list[1] == '分享':
+                        print('报名成功')
+                    else:
+                        print('报名失败')
+
+                    assert create_event_sign_up_list[0] == '报名'
+                    assert create_event_sign_up_list[1] == '分享'
+
+                    # 保存状态文件
+
+                    context.storage_state(path=json_path)
+
+                    print(create_event_sign_up_list)
+                    context.close()
+                    browser.close()
+                    return create_event_sign_up_list
 
 
 

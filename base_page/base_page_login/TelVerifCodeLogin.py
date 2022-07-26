@@ -34,6 +34,9 @@ class TelVerifCodeLogin:
             page = context.new_page()
             # Go to https://login.test.gotin.top/login/phone/account
             page.goto(page_main_url)
+            time.sleep(3)
+            page.wait_for_url(page_main_url)
+
 
             # Click input[type="text"] >> nth=1
             page.locator("input[type=\"text\"]").nth(1).click()
