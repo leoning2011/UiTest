@@ -2,12 +2,19 @@
 
 from base_page.base_page_creat_workshop import GreateWorkshop
 from common.PageGlobalDict import GlobalDict
+from common.ApiToken import ApiResponse
 import pytest
 
 class TestUnifiedCreateWorkshopAssert:
 
     # 引用声明全局变量
     GlobalDict._init()
+
+    def test_work_add_traffic(self):
+        add_traffic =ApiResponse().add_traffic()
+        print('--初始化数据------------------------------给被测方赠送流量包---------------')
+        print(add_traffic)
+        assert add_traffic == 'success'
 
     #@pytest.fixture(scope='class')
     def test_assert_create_workshop(self):

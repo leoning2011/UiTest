@@ -8,12 +8,21 @@ from base_page.base_page_creat_event.GreateEventRelease import GreateEventReleas
 from base_page.base_page_creat_event.GreateEventReleaseSignUp import GreateEventReleaseSignUp
 from base_page.base_page_creat_event.GreateEventInNewWorld import GreateEventInNewWorld
 from common.PageGlobalDict import GlobalDict
+from common.ApiToken import ApiResponse
+
 import pytest
 
 class TestUnifiedCreateEventAssert:
 
     # 引用声明全局变量
     GlobalDict._init()
+
+
+    def test_add_traffic(self):
+        add_traffic =ApiResponse().add_traffic()
+        print('--初始化数据------------------------------给被测方赠送流量包---------------')
+        print(add_traffic)
+        assert add_traffic == 'success'
 
     #@pytest.fixture(scope='class')
     def test_assert_create_event(self):

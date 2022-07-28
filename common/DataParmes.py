@@ -133,7 +133,16 @@ class DataCenter:
         print(user_info.get('user_name'))
         return user_info
 
-
+    @staticmethod
+    def user_email_info():
+        """验证码，{用户名&万能验证码}
+        :return:
+        """
+        # 声明空列表
+        user_email_info = {"user_name": "xiangjian_yd@163.com","password": "yd222222"}
+        #print(data_value)
+        print(user_email_info.get('user_name'))
+        return user_email_info
 
 if __name__ == '__main__':
     data =DataCenter.user_info_verification_code()

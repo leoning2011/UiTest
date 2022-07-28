@@ -10,9 +10,13 @@ class UiProjectDri:
         re_sep = os.path.sep
         #project_patch ="C:\\Users\\admin\\PycharmProjects\\UiTest\\data_store\\logintoken"
         path_root = os.path.realpath(__file__)
-        json_path  =path_root.split('\\',5)
+        sys_sep = re_sep + 'common' + re_sep
+        #print(sys_sep)
+        json_path  =path_root.split(sys_sep,5)
+        #print(path_root)
 
-        re_main_dir = json_path[0] + re_sep + json_path[1] + re_sep  +json_path[2] + re_sep +json_path[3] + re_sep + json_path[4]
+        re_main_dir = json_path[0]
+        #print(re_main_dir)
         #print(re_main_dir)
         #获取ui自动化所处的路径
         #ui_project_patch = os.path.split(path_root)
@@ -36,7 +40,7 @@ class UiProjectDri:
         report_path = re_main_dir + re_sep + 'report'
 
         re_dir_dict['report_path'] =report_path
-        #print(re_dir_dict)
+        print(re_dir_dict)
 
         return re_dir_dict
 
