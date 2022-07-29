@@ -81,6 +81,7 @@ class TestUnifiedCreateEventAssert:
         assert reg_event_release[1] == '已发布'
         assert reg_event_release[2] == 'https://create.test.gotin.top/myevent/overview'
 
+
     def test_assert_create_event_release_singup(self):
         reg_event_release_singup = GreateEventReleaseSignUp().create_event_release_sign_up()
         print('--第6步----------------创建大会------------报名------------------------')
@@ -92,7 +93,6 @@ class TestUnifiedCreateEventAssert:
         assert reg_event_release_singup[1] == '分享'
 
 
-
     def test_assert_create_event_release_in_new_world(self):
         reg_event_release_in_new_world = GreateEventInNewWorld().create_event_in_new_world()
         print('--第7步----------------创建大会-----报名成功后进入活动并离开--------------')
@@ -100,12 +100,13 @@ class TestUnifiedCreateEventAssert:
 
         # common_dict = GlobalDict.get_value('ResetPassword')
         # print(common_dict)
-        assert reg_event_release_in_new_world[0] == '分享'
+        assert reg_event_release_in_new_world[0] == '确认离开当前场次？'
+
 
 
 if __name__ == '__main__':
     #ss =TestUnifiedLoginAssert().test_assert_verif_code_login()
-    pytest.main(['-v', '-s', 'test_assert_create_event.py', "--html=./report/report.html"])
+    pytest.main(['-v', '-s', 'test_unified_creat_event.py', "--html=./report/report.html"])
 
 
 
