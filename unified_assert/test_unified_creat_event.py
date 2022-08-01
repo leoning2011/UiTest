@@ -9,14 +9,17 @@ from base_page.base_page_creat_event.GreateEventReleaseSignUp import GreateEvent
 from base_page.base_page_creat_event.GreateEventInNewWorld import GreateEventInNewWorld
 from common.PageGlobalDict import GlobalDict
 from common.ApiToken import ApiResponse
-
+import sys
+import os
 import pytest
 
 class TestUnifiedCreateEventAssert:
 
     # 引用声明全局变量
     GlobalDict._init()
-
+    curPath = os.path.abspath(os.path.dirname(__file__))
+    rootPath = os.path.split(curPath)[0]
+    sys.path.append(rootPath)
 
     def test_add_traffic(self):
         add_traffic =ApiResponse().add_traffic()
@@ -28,7 +31,7 @@ class TestUnifiedCreateEventAssert:
     def test_assert_create_event(self):
 
         reg_create_event =GreateEvent().create_event()
-        print('--第1步--------------------------------创建大会--------------------------')
+        print('--第1步--------------------------------创建大会-------------基本信息---------')
         print(reg_create_event)
 
         #common_dict = GlobalDict.get_value('ResetPassword')

@@ -5,13 +5,13 @@ from common.PageGlobalDict import  GlobalDict
 import pytest
 import os
 
-class GreateEventAddAgenda:
+class ManageMettingTime:
 
     # 此处构造测试用例所需的数据，
     # 引用声明全局变量
     GlobalDict._init()
     #@pytest.mark.parametrize('userdata',DataCenter().reg_parmes())
-    def create_event_add_agenda(self):
+    def manage_metting_time(self):
         """参数区  添加日程--------------------------------------------------------------"""
 
         wait = int(1)
@@ -21,7 +21,7 @@ class GreateEventAddAgenda:
         # 报告生成路径,，取值公共变量中的路径
         json_path =GlobalDict.get_value('project_pwd').get('login_token')
 
-        page_main_url = "https://create.test.gotin.top/myevent/overview"
+        page_main_url = "https://create.test.gotin.top/eventlists"
         page_target_url ='https://create.test.gotin.top/myevent/agenda'
 
         """参数区  添加日程--------------------------------------------------------------"""
@@ -38,6 +38,15 @@ class GreateEventAddAgenda:
                 #print(title1)
 
                 page.wait_for_url(page_main_url)
+
+
+
+                '''---------------------------------------------------------------'''
+                #点击管理
+                page.click('xpath=/html/body/div[1]/section/section/main/div[6]/div[2]/div[1]/div[1]/div[3]/button[2]/span')
+                #点击左侧的添加日程
+                page.click('xpath=/html/body/div[1]/section/section/main/div[2]/div[3]/div[1]/div/div[1]/div[3]/div[3]/div[1]/div[2]')
+
 
                 '''---------------------------------------分割线-------------------------------------------'''
 
@@ -77,10 +86,10 @@ class GreateEventAddAgenda:
                 # Click text=嘉宾+ 添加嘉宾 >> [placeholder="请选择"]
                 page.locator("text=嘉宾+ 添加嘉宾 >> [placeholder=\"请选择\"]").click()
                 # 选择嘉宾
-                page.click('xpath=/html/body/div[2]/div[9]/div/div/div[1]/ul/li[1]')
-                # 选择主持人
+                page.click('xpath=/html/body/div[3]/div[9]/div/div/div[1]/ul/li/span')
+                # 选择主持人/html/body/div[1]/section/section/main/div[3]/div/form/div[11]/div/div/div/div/div/div/input
                 page.click('xpath=/html/body/div[1]/section/section/main/div[3]/div/form/div[11]/div/div/div/div/div/div/input')
-                page.click('xpath=/html/body/div[2]/div[8]/div/div/div[1]/ul/li[2]')
+                page.locator("li:has-text(\"古念迅\")").click()
                 # 选择场次标签
                 page.locator("[placeholder=\"主标签\"]").click()
                 # Click text=IT互联网创业科技金融游戏教育电商文娱营销设计地产医疗服务业区块链
@@ -119,4 +128,4 @@ class GreateEventAddAgenda:
                 return create_event_add_guest_list
 
 if __name__ == '__main__':
-    creat = GreateEventAddAgenda().create_event_add_agenda()
+    creat = ManageMettingTime().manage_metting_time()

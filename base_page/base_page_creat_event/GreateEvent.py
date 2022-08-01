@@ -63,6 +63,11 @@ class GreateEvent:
                 page.locator("text=英文0/1500 >> textarea").click()
                 # Fill text=英文0/1500 >> textarea
                 page.locator("text=英文0/1500 >> textarea").fill("1212")
+
+                #结束时间
+                page.fill('xpath =/html/body/div[1]/section/section/main/div[2]/div/form/div[6]/div/div/div/input','')
+                page.fill('xpath=/html/body/div[1]/section/section/main/div[2]/div/form/div[6]/div/div/div/input','2025-07-01')
+
                 # Click div:nth-child(11) > .el-form-item__content > div > .select-trigger > .el-input > .el-input__wrapper > .el-input__suffix > .el-input__suffix-inner > .el-icon > svg >> nth=0
                 page.locator(
                     "div:nth-child(11) > .el-form-item__content > div > .select-trigger > .el-input > .el-input__wrapper > .el-input__suffix > .el-input__suffix-inner > .el-icon > svg").first.click()

@@ -57,6 +57,11 @@ class GreateEventAddTicket:
                     'xpath=/html/body/div[1]/section/section/main/div[2]/div[2]/div/form/div[4]/div/div/div/input',
                     '')
                 page.fill('xpath=/html/body/div[1]/section/section/main/div[2]/div[2]/div/form/div[4]/div/div/div/input','00:00')
+
+                #结束日期
+                page.fill('xpath=/html/body/div[1]/section/section/main/div[2]/div[2]/div/form/div[6]/div/div/div/input','')
+                page.fill('xpath=/html/body/div[1]/section/section/main/div[2]/div[2]/div/form/div[6]/div/div/div/input','23:59')
+
                 page.click("text=中文0/500 >> textarea")
                 time.sleep(wait)
 

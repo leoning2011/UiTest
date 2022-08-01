@@ -1,4 +1,6 @@
 from common.FakerData import DeptData
+import datetime
+
 
 class DataCenter:
     @staticmethod
@@ -128,7 +130,7 @@ class DataCenter:
         :return:
         """
         # 声明空列表
-        user_info = {"user_name": "17114261964","verification_code": "12580"}
+        user_info = {"user_name": "17114261964","verification_code": "1258"}
         #print(data_value)
         print(user_info.get('user_name'))
         return user_info
@@ -144,5 +146,17 @@ class DataCenter:
         print(user_email_info.get('user_name'))
         return user_email_info
 
+    @staticmethod
+    def local_time():
+        """验证码，{用户名&万能验证码}
+        :return:
+        """
+        # 声明空列表
+        now_time = datetime.datetime.now().strftime('%Y-%m-%d')
+        time_list =now_time.split('-')
+        print(time_list)
+
+        return now_time
+
 if __name__ == '__main__':
-    data =DataCenter.user_info_verification_code()
+    data =DataCenter.local_time()

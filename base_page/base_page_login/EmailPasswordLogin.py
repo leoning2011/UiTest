@@ -13,7 +13,7 @@ import json
 class EmailPasswordLogin:
     GlobalDict._init()
     # 此处构造测试用例所需的数据，
-    #data = ['13853867111','leo','wang','12580','123qwe!@#']
+    #data = ['13853867111','leo','wang','1258','123qwe!@#']
     #data =DataCenter().reg_parmes()
     #print(data)
     #print(type(data))
