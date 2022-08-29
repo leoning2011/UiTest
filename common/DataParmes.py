@@ -146,6 +146,7 @@ class DataCenter:
         print(user_email_info.get('user_name'))
         return user_email_info
 
+
     @staticmethod
     def local_time():
         """验证码，{用户名&万能验证码}

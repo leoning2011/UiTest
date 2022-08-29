@@ -142,6 +142,8 @@ class ApiResponse:
         assert add_traffic == 'success'
         return  add_traffic
 
+
+
 if __name__ == '__main__':
         s1 =ApiResponse().add_traffic()
 
