@@ -56,6 +56,66 @@ class GreateEventInNewWorld:
 
                 if visible == True:
                     page1.locator("text=中文English进入活动我的活动联系人个人信息语言中文English创建中心退出 >> #head").click()
+                    page1.click('xpath=/html/body/div/div/div[1]/div[1]/div[2]/div/div/div[6]/div[2]/div[2]/div[2]/div/div[2]/div[1]/div[2]/button')
+                    # 默认这项功能为True, 这项功能意味着：当鼠标的指针在屏幕的最坐上方，程序会报错；目的是为了防止程序无法停止
+                    pyautogui.FAILSAFE = False
+
+                    #m =PyMouse()
+                    #给浏览器授权点击，授权麦克风
+                    time.sleep(3)
+                    pyautogui.moveTo(380, 240)
+                    pyautogui.click(380, 240)
+                    #m.click(320, 180)
+                    #给浏览器授权点击，授权摄像头
+                    time.sleep(3)
+                    pyautogui.click(380, 240)
+                    time.sleep(3)
+                    page1.wait_for_timeout(5000)
+
+
+                    # Click button:has-text("准备好了!")
+                    page1.locator("button:has-text(\"准备好了!\")").click()
+
+
+
+
+                    #离开活动大厅，回到活动页
+                    page1.go_back()
+                    page_release_status1 = page1.inner_html("text=离开")
+                    create_event_sign_up_list.append(page_release_status1)
+                    page1.wait_for_timeout(1000)
+                    # Click button:has-text("离开")
+                    page1.locator("button:has-text(\"离开\")").click()
+
+
+
+                    #page2 = popup_info.value
+
+
+
+
+                    '''---------------------------------------分割线-------------------------------------------'''
+
+
+                    # 进行断言
+
+                    assert_url = page.url
+                    create_event_sign_up_list.append(assert_url)
+                    print(create_event_sign_up_list)
+                    if  page_release_status1 =='确认离开当前场次？'  :
+                        print('进入活动成功')
+                    else:
+                        print('进入活动失败')
+                    assert page_release_status1 == '确认离开当前场次？'
+
+                    # 保存状态文件
+
+                    context.storage_state(path=json_path)
+                    time.sleep(1)
+                    print(create_event_sign_up_list)
+                    context.close()
+                    browser.close()
+                    return create_event_sign_up_list
                 #page1.click('xpath =/html/body/div/div/div[1]/div/div/div[1]/div[1]/div/div/button')
                 #page1.click('xpath=/html/body/div/div/div[1]/div/div/div[1]/div[1]/div/div/button')
                 else:
